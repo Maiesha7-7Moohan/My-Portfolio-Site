@@ -1,31 +1,84 @@
 <script setup>
 import { ref, computed } from "vue";
 
-// Filter state
 const activeCategory = ref("All");
 
-// Categories matching your learning timeline and interests
 const categories = ["All", "Python", "HTML & CSS", "Team Projects", "Vue.js"];
 
-// Projects populated with context from your Journey & About page
+// Projects ordered from latest to oldest
 const projects = ref([
   {
-    id: 1,
-    title: "Personal Portfolio Website",
-    category: "HTML & CSS",
-    timeline: "June 2026",
+    id: 7,
+    title: "My Personal Portfolio Website (Vue.js Version)",
+    category: "Vue.js",
+    timeline: "(28 September 2026)",
     description:
-      "My first personal portfolio created using vanilla HTML and CSS, designed to showcase my projects, learning journey, and interest in creative arts and fashion.",
+      "Created my personal portfolio website using Vue.js to showcase my skills and projects, the one you are currently viewing.",
     takeaways: [
-      "Mastered responsive layout design using CSS Flexbox and Grid.",
-      "Implemented clean, accessible semantic HTML structure.",
-      "Designed custom visual styling reflecting personal aesthetic.",
+      "Built component-driven UI structure using Vue 3 Composition API.",
+      "Implemented dynamic filtering and modal state handling with reactive refs.",
+      "Refined modern single-page navigation and responsive styling.",
     ],
-    techStack: ["HTML5", "CSS3"],
-    githubUrl: "https://github.com/your-username/portfolio-v1",
-    liveUrl: "https://your-portfolio-v1.netlify.app",
+    techStack: ["JavaScript", "HTML", "Vue.js", "CSS"],
+    githubUrl: "https://github.com/Maiesha7-7Moohan/My-Portfolio-Site.git",
+    liveUrl: "",
+    status: "In Progress",
+    badgeColor: "#93c5fd",
+  },
+  {
+    id: 6,
+    title: "JAM'N Music Streaming Platform",
+    category: "Team Projects",
+    timeline: "(25 August - 25 September 2026)",
+    description:
+      "Collaborated with my fourth team to create JAM'N, a music streaming platform that allows users to discover local music and create playlists.",
+    takeaways: [
+      "Built audio playback controls and interactive playlist interfaces in Vue.",
+      "Managed application state for tracking track listings and user actions.",
+      "Designed an immersive theme focused on discovering local music content.",
+    ],
+    techStack: ["JavaScript", "HTML", "Vue.js", "CSS"],
+    githubUrl: "https://github.com/totoseahlumile-dot/JAM-N.git",
+    liveUrl: "",
     status: "Completed",
-    badgeColor: "#ebff77",
+    badgeColor: "#93c5fd",
+  },
+  {
+    id: 5,
+    title: "News Web Scraping Analytics Platform",
+    category: "Team Projects",
+    timeline: "(20 July - 3 August 2026)",
+    description:
+      "Collaborated with my third team to create a News Web Scraping Analytics Platform.",
+    takeaways: [
+      "Extracted and processed external web news data using Python scripts.",
+      "Rendered collected analytics data dynamically within a Vue frontend.",
+      "Worked in a team setting to blend web scraping with frontend data display.",
+    ],
+    techStack: ["JavaScript", "HTML", "Vue.js", "Python"],
+    githubUrl: "https://github.com/Maiesha7-7Moohan/Team-Charlie.git",
+    liveUrl: "",
+    status: "Completed",
+    badgeColor: "#93c5fd",
+  },
+  {
+    id: 4,
+    title: "Modern Tech Solutions HR System",
+    category: "Team Projects",
+    timeline: `25 June - 10 July 2026
+(Completed but redone)`,
+    description:
+      "Collaborated with my second team on a project to create a frontend HR system that is user-friendly for HR staff. It was later reworked to combine frontend and backend functionality.",
+    takeaways: [
+      "Designed an intuitive UI for managing employee records and roles.",
+      "Leveraged DOM manipulation and event handlers for interactive tables.",
+      "Reworked architecture to connect user interface actions with data operations.",
+    ],
+    techStack: ["JavaScript", "HTML", "CSS"],
+    githubUrl: "https://github.com/imaanabrahams/Modern_Tech_Solutions.git",
+    liveUrl: "https://imaanabrahams.github.io/Modern_Tech_Solutions/",
+    status: "Edited",
+    badgeColor: "#c776d7",
   },
   {
     id: 2,
@@ -33,53 +86,53 @@ const projects = ref([
     category: "Team Projects",
     timeline: "9 June - 19 June 2026",
     description:
-      "Collaborative team project built at Life Choices Academy. Worked with peers to develop a multi-page web platform for wellness, featuring interactive layouts and responsive components.",
+      "Collaborative team project built at Life Choices Academy. Worked with peers to develop a multi-page web platform for fitness and wellness.",
     takeaways: [
-      "Gained experience in team collaboration and Git/GitHub branching workflows.",
-      "Integrated dynamic JavaScript features for client-side interactivity.",
-      "Structured consistent design language across multiple pages.",
+      "Gained experience in Git branching and peer collaboration workflows.",
+      "Implemented client-side interactivity using Vanilla JavaScript.",
+      "Maintained cohesive UI styling across multiple team-authored pages.",
     ],
-    techStack: ["HTML5", "CSS3", "JavaScript", "Git"],
-    githubUrl: "https://github.com/your-username/fitness-wellness-project",
-    liveUrl: "https://fitness-wellness-demo.netlify.app",
-    status: "Completed",
-    badgeColor: "#93c5fd",
-  },
-  {
-    id: 3,
-    title: "Python Learning Exercises",
-    category: "Python", // Categorized under core languages
-    timeline: "April 2026",
-    description:
-      "Collection of practical Python scripts and exercises covering data structures, algorithm basics, and foundational logic.",
-    takeaways: [
-      "Strengthened core programming logic and problem-solving techniques.",
-      "Worked with control flow, functions, and data structures.",
-      "Built a foundation for backend database integration.",
-    ],
-    techStack: ["Python"],
-    githubUrl: "https://github.com/your-username/python-exercises",
-    liveUrl: "",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    githubUrl: "https://github.com/Khaalid-hattas/fitness-wellness.git",
+    liveUrl: "https://fittwell-coach.netlify.app/",
     status: "Completed",
     badgeColor: "#fde047",
   },
   {
-    id: 4,
-    title: "Full-Stack Web App (MySQL & Vue)",
-    category: "Upcoming",
-    timeline: "July 2026 (In Progress)",
+    id: 1,
+    title: "Personal Portfolio Website",
+    category: "HTML & CSS",
+    timeline: "3 June 2026",
     description:
-      "Upcoming web application leveraging Vue.js for reactive frontend components alongside Node.js, PHP, and MySQL for database operations.",
+      "Completed my first personal portfolio created using vanilla HTML and CSS, designed to showcase my learning journey, goals and interest in creative arts and fashion.",
     takeaways: [
-      "Building full-stack CRUD capabilities.",
-      "Connecting Vue components to dynamic backend services.",
-      "Designing structured database schemas in MySQL.",
+      "Mastered responsive grid and flexbox layouts with Vanilla CSS.",
+      "Structured clean, accessible HTML across multiple portfolio pages.",
+      "Created a customized aesthetic tailored to my personal creative interests.",
     ],
-    techStack: ["Vue.js", "MySQL", "PHP", "Node.js"],
-    githubUrl: "https://github.com/your-username/fullstack-app",
+    techStack: ["HTML", "CSS"],
+    githubUrl: "https://github.com/Maiesha7-7Moohan/My-Site.git",
+    liveUrl: "https://spiffy-sprinkles-c71b56.netlify.app/",
+    status: "Completed",
+    badgeColor: "#f37fe2",
+  },
+  {
+    id: 3,
+    title: "Python Mini Toolkit",
+    category: "Python",
+    timeline: "19 May 2026",
+    description:
+      "Created a Python Mini Toolkit made of previous exercises combined into one program.",
+    takeaways: [
+      "Strengthened core programming logic, control flow, and data structures.",
+      "Combined multiple exercise modules into a single CLI utility.",
+      "Established foundational problem-solving skills for future backend work.",
+    ],
+    techStack: ["Python"],
+    githubUrl: "https://github.com/Maiesha7-7Moohan/Python-Mini-Toolkit.git",
     liveUrl: "",
-    status: "In Progress",
-    badgeColor: "#fca5a5",
+    status: "Completed",
+    badgeColor: "#f37fe2",
   },
 ]);
 
@@ -340,6 +393,7 @@ const closeModal = () => {
   font-size: 0.8rem;
   color: #777;
   white-space: pre-line;
+  text-align: right;
 }
 
 .card-title {

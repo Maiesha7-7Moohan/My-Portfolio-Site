@@ -21,11 +21,6 @@ const journeyEntries = ref([
       "Created a Python Mini Toolkit made of previous excercises combined into one program.",
   },
   {
-    timeline: "(9 June - 19 June 2026)",
-    topic:
-      "Collaborated with my first team on a project to create a Fitness and Wellness website using HTML, CSS, and JavaScript.",
-  },
-  {
     timeline: "(28 May - 27 June 2026)",
     topic: "JavaScript learning period. Starting with the basics.",
   },

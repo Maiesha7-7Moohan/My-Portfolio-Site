@@ -1,39 +1,57 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
-const form = reactive({
+const formData = ref({
   name: "",
   email: "",
-  subject: "",
   message: "",
 });
 
-const isSubmitted = ref(false);
+const isSubmitting = ref(false);
 
-function handleSubmit() {
-  // Simple form submission simulation
-  isSubmitted.value = true;
-  form.name = "";
-  form.email = "";
-  form.subject = "";
-  form.message = "";
-}
+const handleFormSubmit = async () => {
+  isSubmitting.value = true;
+
+  try {
+    const response = await fetch("https://formspree.io/f/mrednoqy", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(formData.value),
+    });
+
+    if (response.ok) {
+      alert("Thank you! Your message has been sent successfully.");
+      formData.value = { name: "", email: "", message: "" };
+    } else {
+      alert("Oops! There was a problem submitting your form.");
+    }
+  } catch (error) {
+    alert("An error occurred while sending your message.");
+  } finally {
+    isSubmitting.value = false;
+  }
+};
 </script>
 
 <template>
   <main class="main-container">
-    <h2>Get In Touch</h2>
+    <h2>Wanna Get In Touch?</h2>
 
-    <div class="contact-card">
-      <form @submit.prevent="handleSubmit" class="contact-form">
+    <!-- Contact Form Section -->
+    <div class="form-container">
+      <h3>Send me a Message Directly</h3>
+      <form class="contact-form" @submit.prevent="handleFormSubmit">
         <div class="form-group">
           <label for="name">Name</label>
           <input
             id="name"
-            v-model="form.name"
+            v-model="formData.name"
             type="text"
-            placeholder="Your Name"
             required
+            placeholder="Your Name"
           />
         </div>
 
@@ -41,21 +59,10 @@ function handleSubmit() {
           <label for="email">Email</label>
           <input
             id="email"
-            v-model="form.email"
+            v-model="formData.email"
             type="email"
-            placeholder="your.email@example.com"
             required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input
-            id="subject"
-            v-model="form.subject"
-            type="text"
-            placeholder="Subject"
-            required
+            placeholder="Your Email Address"
           />
         </div>
 
@@ -63,27 +70,26 @@ function handleSubmit() {
           <label for="message">Message</label>
           <textarea
             id="message"
-            v-model="form.message"
+            v-model="formData.message"
             rows="5"
-            placeholder="Write your message here..."
             required
+            placeholder="Write your message here..."
           ></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Send Message</button>
+        <button type="submit" class="submit-btn" :disabled="isSubmitting">
+          {{ isSubmitting ? "Sending..." : "Send Message" }}
+        </button>
       </form>
-
-      <p v-if="isSubmitted" class="success-message">
-        Thank you for reaching out! Your message has been sent.
-      </p>
     </div>
   </main>
 </template>
 
 <style scoped>
+/* Main Container */
 .main-container {
   flex: 1;
-  max-width: 700px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   padding: 3rem 1.5rem;
@@ -96,76 +102,84 @@ function handleSubmit() {
   text-align: center;
 }
 
-.contact-card {
-  background: #ffffff;
-  padding: 2.5rem;
+/* Form Container */
+.form-container {
+  background-color: #ffffff;
+  border: 1px solid #f0f0f0;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  border: 1px solid #eaeaea;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.form-container h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #111;
+  text-align: center;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .form-group label {
+  font-size: 0.9rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  color: #333;
+  color: #374151;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
   font-family: inherit;
+  color: #111;
+  background-color: #f9fafb;
   transition:
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    background-color 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #d073ef;
-  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.15);
+  border-color: #111;
+  background-color: #ffffff;
 }
 
 .submit-btn {
-  background-color: #d073ef;
-  color: white;
-  padding: 0.85rem 1.5rem;
+  background-color: #ebff77;
+  color: #111;
   border: none;
-  border-radius: 6px;
-  font-size: 1rem;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
   font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-top: 0.5rem;
+  align-self: flex-start;
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
 }
 
-.submit-btn:hover {
-  background-color: #9452ab;
+.submit-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-.success-message {
-  margin-top: 1.5rem;
-  padding: 1rem;
-  background-color: #e6f4ea;
-  color: #137333;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 500;
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 </style>

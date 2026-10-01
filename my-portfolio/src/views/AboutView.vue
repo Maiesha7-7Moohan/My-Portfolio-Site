@@ -31,7 +31,7 @@ const interests = ref([
       "https://i.ibb.co/9kJRBN5B/Scotland-and-England-300-years-of-union-in-pictures.jpg",
     alt: "Fashion Inspiration",
     description:
-      "I have always been interested in fashion, fascinated by the creativity and self-expression that goes into it. I enjoy experimenting with different styles and trends, and I have always been drawn to unique and bold fashion choices (such as the goth scene, emo, scene, mcbling, and so many other subcultures).",
+      "I have always been interested in fashion, fascinated by the creativity and self-expression that goes into it. I enjoy experimenting with different styles and trends, and I have always been drawn to unique and bold fashion choices (such as the Goth scene, Emo, Mcbling, and so many other subcultures).",
   },
 ]);
 </script>
@@ -39,7 +39,7 @@ const interests = ref([
 <template>
   <main class="main-container">
     <div class="about-wrapper">
-      <!-- Left Column: About Profile -->
+      <!-- Top Block: About Profile (Wider Card) -->
       <section class="about-block">
         <div class="profile-header">
           <img
@@ -57,16 +57,16 @@ const interests = ref([
             YouthCode Cohort 18 program.
           </p>
           <p>
-            I am excited to continue my coding
-            journey by learning more about Python, HTML, CSS, JavaScript and so
-            much more. Besides being interested in coding, I also have a passion
-            for fashion and creative arts. I hope this journey will take me to
-            new heights and open up new opportunities for me in the future.
+            I am excited to continue my coding journey by learning more about
+            Python, HTML, CSS, JavaScript and so much more. Besides being
+            interested in coding, I also have a passion for fashion and creative
+            arts. I hope this journey will take me to new heights and open up
+            new opportunities for me in the future.
           </p>
         </div>
       </section>
 
-      <!-- Right Column: Interests Showcase -->
+      <!-- Bottom Block: Interests Showcase -->
       <section class="interests-block">
         <h3>Some of My Interests</h3>
         <div class="gallery-row">
@@ -92,29 +92,29 @@ const interests = ref([
 </template>
 
 <style scoped>
-/* Main Outer Layout Container */
+/* Main Outer Layout Container - Expanded for extra width */
 .main-container {
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   padding: 3rem 1.5rem;
   flex: 1;
 }
 
-/* Two-Column Side-by-Side Grid */
+/* Vertical Stacked Layout */
 .about-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 2.5rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
 }
 
-/* --- Left Column: About Section (Static position) --- */
+/* --- Top Block: About Section (Wider & Full-Span) --- */
 .about-block {
+  width: 100%;
   background-color: #ffffff;
   border: 1px solid var(--color-border, #eae6f2);
-  border-radius: 14px;
-  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
   box-shadow: 0 4px 15px rgba(128, 90, 199, 0.05);
 }
 
@@ -127,42 +127,45 @@ const interests = ref([
 }
 
 .profile-avatar {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--color-primary, #805ac7);
+  border: 3px solid var(--color-primary, #ad5ac7);
   margin-bottom: 1rem;
   box-shadow: 0 4px 12px rgba(128, 90, 199, 0.15);
 }
 
 .profile-header h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--color-text-dark, #1e1e24);
   margin: 0;
 }
 
 .about-text {
+  max-width: 800px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  line-height: 1.6;
+  gap: 1.25rem;
+  line-height: 1.7;
   color: var(--color-text-muted, #555555);
-  font-size: 0.98rem;
+  font-size: 1.05rem;
+  text-align: center;
 }
 
-/* --- Right Column: Interests Section --- */
+/* --- Bottom Block: Interests Section --- */
 .interests-block h3 {
-  font-size: 1.75rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.75rem;
   color: var(--color-text-dark, #1e1e24);
-  text-align: left;
+  text-align: center;
 }
 
 .gallery-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
 .gallery-card {
@@ -236,10 +239,10 @@ const interests = ref([
   max-height: 100%;
 }
 
-/* Responsive Stacking for Mobile */
+/* Responsive Grid Adjustments */
 @media (max-width: 900px) {
-  .about-wrapper {
-    grid-template-columns: 1fr;
+  .about-block {
+    padding: 2rem 1.5rem;
   }
 
   .gallery-row {
