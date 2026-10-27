@@ -43,7 +43,7 @@ const interests = ref([
       <section class="about-block">
         <div class="profile-header">
           <img
-            src="https://i.ibb.co/C3pry9Gv/me.png"
+            src="/images/maiesha2.png"
             alt="Maiesha Moohan Profile Picture"
             class="profile-avatar"
           />

@@ -51,7 +51,7 @@ const recentProjects = ref([
 
       <div class="image-card">
         <img
-          src="https://i.ibb.co/JS5m69R/me-2.png"
+          src="/images/maiesha1.png"
           alt="Maiesha"
           class="side-profile-img"
         />
